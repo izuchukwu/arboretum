@@ -1,0 +1,72 @@
+/* Color */
+
+:root {
+    --color-primary: #181F15;
+    --color-secondary: #2D592C;
+    --color-background: #E8F1E8;
+}
+
+[scheme="dark"] {
+    --color-primary: #E8F1E8;
+    --color-secondary: #7AA67A;
+    --color-background: #1D1F1D;
+}
+
+/* Style */
+
+body {
+    padding: 72px;
+    background: var(--color-background);
+}
+
+.container-title {
+    width: 500px;
+    max-width: 85%;
+}
+
+/* Type */
+
+h1, p {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+    font-family: 'SangBleu Sunrise', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 26px;
+    line-height: 38px;
+    color: var(--color-primary);
+}
+
+p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 185%;
+    color: var(--color-secondary);
+}
+
+/* Responsive Adjustment */
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 36px;
+    }
+
+    h1 {
+        font-size: 20px;
+        line-height: 32px;
+    }
+}
+
+/* Fonts */
+
+@import url('https://rsms.me/inter/inter.css');
+
+@font-face {
+    font-family: 'SangBleu Sunrise';
+    font-style: normal;
+    font-weight: 400;
+    src: local("SangBleu Sunrise"), local("SangBleuSunrise"), url("../fonts/SangBleuSunrise-Regular-WebTrial.woff2") format("woff2"), url("../fonts/SangBleuSunrise-Regular-WebTrial.woff") format("woff");
+}
