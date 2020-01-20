@@ -35,8 +35,34 @@ body {
     margin: 0 auto;
 }
 
+.content-preview {
+    position: fixed;
+    width: 400px;
+    height: 200px;
+    z-index: 100;
+    background-color: white;
+    visibility: hidden;
+    background-image: url(../assets/iphone-light.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
 .content-page {
+    position: relative;
     margin-top: 60px;
+    transition: transform 0.2s ease;
+    z-index: 0;
+}
+
+.content-page:hover {
+    transform: translateY(-5px);
+    opacity: 1.0;
+    z-index: 200;
+}
+
+.content-page-unfocused {
+    transition: opacity 0.2s ease;
+    opacity: 0.25;
 }
 
 .container-footer {

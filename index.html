@@ -23,7 +23,10 @@
         <div class="container-title">
             <h1>I'm Izuchukwu—<br>a Nigerian-American product designer and design technologist at Mailchimp.</h1>
         </div>
+
         <div class="container-content">
+            <div class="content-preview">
+            </div>
             <div class="content-page">
                 <a href="#">
                     <h1>Bringing Suggested Actions to Mailchimp</h1>
@@ -74,25 +77,62 @@
         </div>
 
         <script type="text/javascript">
+            let content = document.querySelector(".container-content")
+            let pages = document.querySelectorAll(".content-page")
+            let preview = document.querySelector(".content-preview")
+
+            pages.forEach(function(page) {
+                page.onmousemove = function(mouse) {
+                    console.log(`x:${mouse.clientX}, y: ${mouse.clientY}`)
+                    console.log(`left: ${content.offsetLeft}, top:${content.offsetTop}`)
+
+                    // let contentRect = content.getBoundingClientRect()
+                    let x = mouse.clientX - preview.offsetLeft
+                    let y = mouse.clientY - preview.offsetTop
+                    preview.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`
+                }
+
+                page.onmouseover = function() {
+                    pages.forEach(function(siblingPage) {
+                        if (page !== siblingPage) {
+                            siblingPage.classList.add('content-page-unfocused')
+                        }
+                    })
+                    preview.style.visibility = 'visible'
+                }
+
+                page.onmouseout = function() {
+                    pages.forEach(function(siblingPage) {
+                        if (page !== siblingPage) {
+                            siblingPage.classList.remove('content-page-unfocused')
+                        }
+                    })
+                    preview.style.visibility = 'hidden'
+                }
+            })
+        </script>
+        <script type="text/javascript">
             let title = document.querySelector(".container-title")
             let footer = document.querySelector(".container-footer")
-            console.log(footer)
+
+            let opacity = function(scrollDistanceToEdge) {
+                return 1 - ((scrollDistanceToEdge - (0.05 * window.innerHeight)) / (0.08 * window.innerHeight))
+            }
+
+            let visibilityForOpacity = function(opacity) {
+                return opacity > 0.0 ? 'visible' : 'hidden'
+            }
 
             window.onscroll = function() {
                 let scrollTop = document.documentElement.scrollTop
-                let opacity = 1 - ((scrollTop - 50) / 80)
-                title.style.opacity = opacity
+                let titleOpacity = opacity(scrollTop)
+                title.style.opacity = titleOpacity
+                title.style.visibility = visibilityForOpacity(titleOpacity)
 
-                // when Mobile Safari's toolbars are hidden on scroll,
-                // its innerheight and client height are misaligned,
-                // so we need to account for it
-
-                let MobileSafariToolbarAdjustment = window.innerHeight - document.documentElement.clientHeight
-                let scrollDistanceToBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop - window.innerHeight
-
-                opacity = 1 - ((scrollDistanceToBottom - 50) / 80)
-                console.log(`scrollHeight: ${document.documentElement.scrollHeight}, scrollTop: ${scrollTop}, innerHeight: ${window.innerHeight}, scrollDistanceToBottom: ${scrollDistanceToBottom}, opacity: ${opacity}`)
-                footer.style.opacity = opacity
+                let scrollBottom = document.documentElement.scrollHeight - scrollTop - window.innerHeight
+                let footerOpacity = opacity(scrollBottom)
+                footer.style.opacity = footerOpacity
+                footer.style.visibility = visibilityForOpacity(footerOpacity)
             }
         </script>
     </body>
