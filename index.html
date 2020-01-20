@@ -80,12 +80,18 @@
 
             window.onscroll = function() {
                 let scrollTop = document.documentElement.scrollTop
-                let opacity = 1 - ((scrollTop - 50) / 65)
+                let opacity = 1 - ((scrollTop - 50) / 80)
                 title.style.opacity = opacity
 
-                let scrollDistanceToBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight
-                opacity = 1- ((scrollDistanceToBottom - 50) / 65)
-                console.log(`${document.documentElement.scrollHeight}, ${scrollTop}, ${document.documentElement.clientHeight}, ${scrollDistanceToBottom}, ${opacity}`)
+                // when Mobile Safari's toolbars are hidden on scroll,
+                // its innerheight and client height are misaligned,
+                // so we need to account for it
+
+                let MobileSafariToolbarAdjustment = window.innerHeight - document.documentElement.clientHeight
+                let scrollDistanceToBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop - window.innerHeight
+
+                opacity = 1 - ((scrollDistanceToBottom - 50) / 80)
+                console.log(`scrollHeight: ${document.documentElement.scrollHeight}, scrollTop: ${scrollTop}, innerHeight: ${window.innerHeight}, scrollDistanceToBottom: ${scrollDistanceToBottom}, opacity: ${opacity}`)
                 footer.style.opacity = opacity
             }
         </script>

@@ -29,7 +29,7 @@ body {
 
 .container-content {
     padding-top: 25vh;
-    padding-bottom: 25vh;
+    padding-bottom: calc(25vh + 60px);
     width: 620px;
     max-width: 100%;
     margin: 0 auto;
@@ -40,7 +40,7 @@ body {
 }
 
 .container-footer {
-    position: fixed;
+    position: sticky;
     bottom: 72px;
     opacity: 0.0;
 }
