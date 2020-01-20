@@ -14,7 +14,7 @@
         <!-- Open Graph -->
     	<meta property="og:title" content="Izuchukwu Elechi">
     	<meta property="og:site_name" content="Izuchukwu Elechi">
-    	<meta property="og:image" content="http://izuchukwu.co/assets/me.png">
+    	<meta property="og:image" content="http://izuchukwu.co/assets/me.jpg">
     	<meta property="og:description" content="Izuchukwu Elechi is a Nigerian-American product designer and design technologist at Mailchimp.">
     	<meta property="og:type" content="website">
     	<meta property="og:url" content="http://izuchukwu.co">
@@ -23,5 +23,64 @@
         <div class="container-title">
             <h1>I'm Izuchukwu—<br>a Nigerian-American product designer and design technologist at Mailchimp.</h1>
         </div>
+        <div class="container-content">
+            <div class="content-page">
+                <a href="#">
+                    <h1>Bringing Suggested Actions to Mailchimp</h1>
+                    <p>Case Study</p>
+                </a>
+            </div>
+            <div class="content-page">
+                <a href="#">
+                    <h1>Bridging our users with their own—Designing the Contact Profile at Mailchimp</h1>
+                    <p>Case Study, Interface Design</p>
+                </a>
+            </div>
+            <div class="content-page">
+                <a href="#">
+                    <h1>Exploring new paradigms for organizing thought</h1>
+                    <p>Writing, Interface Design</p>
+                </a>
+            </div>
+            <div class="content-page">
+                <a href="#">
+                    <h1>Usability backed by data—Introducing real data in design and research at Mailchimp</h1>
+                    <p>Case Study, Design Technology</p>
+                </a>
+            </div>
+            <div class="content-page">
+                <a href="#">
+                    <h1>The Parts Bin—Select concept excerpts at Mailchimp</h1>
+                    <p>Interface Design</p>
+                </a>
+            </div>
+            <div class="content-page">
+                <a href="#">
+                    <h1>From start to finish line—Designing Mailchimp Bikeshare</h1>
+                    <p>Interface Design</p>
+                </a>
+            </div>
+            <div class="content-page">
+                <a href="#">
+                    <h1>Thoroughly Considering Accessibility</h1>
+                    <p>Writing</p>
+                </a>
+            </div>
+        </div>
+        <div class="container-footer">
+            <h1 class="link-email">
+                <a href="mailto:hey@izuchukwu.co">hey@izuchukwu.co</a>
+            </h1>
+        </div>
+
+        <script type="text/javascript">
+            let title = document.querySelector(".container-title")
+            let lastOpacity = 1
+
+            window.onscroll = function() {
+                let opacity = 1 - ((document.documentElement.scrollTop - 50) / 65)
+                title.style.opacity = opacity
+            }
+        </script>
     </body>
 </html>
