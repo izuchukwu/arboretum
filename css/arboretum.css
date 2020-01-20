@@ -39,6 +39,12 @@ body {
     margin-top: 60px;
 }
 
+.container-footer {
+    position: fixed;
+    bottom: 72px;
+    opacity: 0.0;
+}
+
 /* Type */
 
 h1, p {
@@ -60,6 +66,7 @@ p {
     font-weight: normal;
     line-height: 185%;
     color: var(--color-secondary);
+    opacity: 0.8;
 }
 
 a {
@@ -81,6 +88,10 @@ a {
     h1 {
         font-size: 20px;
         line-height: 32px;
+    }
+
+    p {
+        font-size: 14px;
     }
 
     .container-title {
