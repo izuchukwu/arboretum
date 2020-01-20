@@ -12,6 +12,22 @@
     --color-background: #1D1F1D;
 }
 
+/* Fade In */
+
+@keyframes fadeIn {
+    to {
+        opacity: 1.0;
+    }
+
+    from {
+        opacity: 0.0;
+    }
+}
+
+.container-title, .container-content {
+    opacity: 0.0;
+}
+
 /* Style */
 
 body {
@@ -42,7 +58,6 @@ body {
     z-index: 100;
     background-color: white;
     visibility: hidden;
-    background-image: url(../assets/iphone-light.jpg);
     background-size: cover;
     background-position: center;
 }

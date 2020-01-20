@@ -20,50 +20,50 @@
     	<meta property="og:url" content="http://izuchukwu.co">
     </head>
     <body>
-        <div class="container-title">
+        <div class="container-title title-to-fade-in">
             <h1>I'm Izuchukwu—<br>a Nigerian-American product designer and design technologist at Mailchimp.</h1>
         </div>
 
         <div class="container-content">
             <div class="content-preview">
             </div>
-            <div class="content-page">
+            <div class="content-page page-to-fade-in" preview="iphone-light.jpg">
                 <a href="#">
                     <h1>Bringing Suggested Actions to Mailchimp</h1>
                     <p>Case Study</p>
                 </a>
             </div>
-            <div class="content-page">
+            <div class="content-page page-to-fade-in" preview="iphone-dark.jpg">
                 <a href="#">
                     <h1>Bridging our users with their own—Designing the Contact Profile at Mailchimp</h1>
                     <p>Case Study, Interface Design</p>
                 </a>
             </div>
-            <div class="content-page">
+            <div class="content-page page-to-fade-in" preview="iphone-light.jpg">
                 <a href="#">
                     <h1>Exploring new paradigms for organizing thought</h1>
                     <p>Writing, Interface Design</p>
                 </a>
             </div>
-            <div class="content-page">
+            <div class="content-page page-to-fade-in" preview="iphone-dark.jpg">
                 <a href="#">
                     <h1>Usability backed by data—Introducing real data in design and research at Mailchimp</h1>
                     <p>Case Study, Design Technology</p>
                 </a>
             </div>
-            <div class="content-page">
+            <div class="content-page page-to-fade-in" preview="iphone-light.jpg">
                 <a href="#">
                     <h1>The Parts Bin—Select concept excerpts at Mailchimp</h1>
                     <p>Interface Design</p>
                 </a>
             </div>
-            <div class="content-page">
+            <div class="content-page page-to-fade-in" preview="iphone-dark.jpg">
                 <a href="#">
                     <h1>From start to finish line—Designing Mailchimp Bikeshare</h1>
                     <p>Interface Design</p>
                 </a>
             </div>
-            <div class="content-page">
+            <div class="content-page page-to-fade-in" preview="iphone-light.jpg">
                 <a href="#">
                     <h1>Thoroughly Considering Accessibility</h1>
                     <p>Writing</p>
@@ -77,28 +77,98 @@
         </div>
 
         <script type="text/javascript">
+            // Fade-in animation
+
+            let title = document.querySelector(".container-title")
             let content = document.querySelector(".container-content")
             let pages = document.querySelectorAll(".content-page")
+
+            window.onload = function() {
+                // duration easing delay iterations direction name
+                title.style.animation = '0.25s ease 0.1s 1 forwards fadeIn'
+                content.style.animation = '0.25s ease 0.75s 1 forwards fadeIn'
+            }
+        </script>
+        <script type="text/javascript">
+            // let fadeInDuration = 0.25;
+            // let titleToPagesInterval = 0.25;
+            // let pageCascadeInterval = 0.25;
+            // let timestampAtStart = 0;
+            //
+            // let title = document.querySelector(".container-title")
+            // let pages = document.querySelectorAll(".content-page")
+            //
+            // function fadeInTitle(timestamp) {
+            //     if (timestampAtStart == 0) timestampAtStart = timestamp
+            //     let progress = (timestamp - timestampAtStart) * 1000 / fadeInDuration
+            //
+            //     let finalTitleOpacity = 1 - ((scrollDistanceToEdge - (0.05 * window.innerHeight)) / (0.08 * window.innerHeight))
+            //     title.opacity = finalTitleOpacity * progress
+            //
+            //     if (progress < 1.0) {
+            //         window.requestAnimationFrame(fadeInTitle)
+            //     } else {
+            //         timestampAtStart = 0
+            //         window.requestAnimationFrame(titleToPagesPause)
+            //     }
+            // }
+            //
+            // function titleToPagesPause(timestamp) {
+            //     if (timestampAtStart == 0) timestampAtStart = timestamp
+            //     let progress = (timestamp - timestampAtStart) * 1000 / titleToPagesInterval
+            //
+            //     if (progress < 1.0) {
+            //         window.requestAnimationFrame(titleToPagesPause)
+            //     } else {
+            //         timestampAtStart = 0
+            //         window.requestAnimationFrame(fadeInPages)
+            //     }
+            // }
+            //
+            // function fadeInPages(timestamp) {
+            //     if (timestampAtStart == 0) timestampAtStart = timestamp
+            //     let progress = (timestamp - timestampAtStart) * 1000 / fadeInDuration
+            //
+            //
+            //
+            //     if (progress < 1.0) window.requestAnimationFrame(fadeInPages)
+            // }
+            //
+            // window.onload = function() {
+            //     window.requestAnimationFrame(fadeIn)
+            // }
+        </script>
+        <script type="text/javascript">
+            // Title hover states & preview on hover
+
+            // let content = document.querySelector(".container-content")
+            // let pages = document.querySelectorAll(".content-page")
             let preview = document.querySelector(".content-preview")
 
             pages.forEach(function(page) {
                 page.onmousemove = function(mouse) {
-                    console.log(`x:${mouse.clientX}, y: ${mouse.clientY}`)
-                    console.log(`left: ${content.offsetLeft}, top:${content.offsetTop}`)
-
-                    // let contentRect = content.getBoundingClientRect()
                     let x = mouse.clientX - preview.offsetLeft
                     let y = mouse.clientY - preview.offsetTop
-                    preview.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`
+
+                    let transform = ''
+                    if (window.innerHeight - page.getBoundingClientRect().top < 250) {
+                        transform += 'translateY(-100%) translateY(-10px) translateX(5px)'
+                    } else {
+                        transform += 'translate(15px, 25px)'
+                    }
+
+                    preview.style.transform = `${transform} translate(${x}px, ${y}px)`
                 }
 
                 page.onmouseover = function() {
                     pages.forEach(function(siblingPage) {
                         if (page !== siblingPage) {
                             siblingPage.classList.add('content-page-unfocused')
+                            // siblingPage.style.animation = ''
                         }
                     })
                     preview.style.visibility = 'visible'
+                    preview.style.backgroundImage = `url(./assets/${page.getAttribute('preview')})`
                 }
 
                 page.onmouseout = function() {
@@ -107,12 +177,15 @@
                             siblingPage.classList.remove('content-page-unfocused')
                         }
                     })
+                    preview.style.backgroundImage = ''
                     preview.style.visibility = 'hidden'
                 }
             })
         </script>
         <script type="text/javascript">
-            let title = document.querySelector(".container-title")
+            // Title & footer scroll animation
+
+            // let title = document.querySelector(".container-title")
             let footer = document.querySelector(".container-footer")
 
             let opacity = function(scrollDistanceToEdge) {
