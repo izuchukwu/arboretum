@@ -20,67 +20,116 @@
     	<meta property="og:url" content="http://izuchukwu.co">
     </head>
     <body>
-        <div class="container-title">
-            <h1>I'm Izuchukwu—<br>a Nigerian-American product designer and design technologist at Mailchimp.</h1>
-        </div>
-
-        <div class="container-content">
-            <div class="content-preview">
+        <div class="containers">
+            <div class="container-title">
+                <h1><span class="name">I'm Izuchukwu—</span><br>a Nigerian-American product designer and design technologist at Mailchimp.</h1>
             </div>
-            <div class="content-page" preview="iphone-light.jpg">
-                <a href="#">
-                    <h1>Bringing Suggested Actions to Mailchimp</h1>
-                    <p>Case Study</p>
-                </a>
+            <div class="container-actions">
+                <div class="action-click">
+                    <img class= "action-click-icon" src="assets/click.svg">
+                </div>
+                <div class="action action-moon">
+                    <img class="action-moon-icon" src="assets/moon.svg">
+                </div>
             </div>
-            <div class="content-page" preview="iphone-dark.jpg">
-                <a href="#">
-                    <h1>Bridging our users with their own—Designing the Contact Profile at Mailchimp</h1>
-                    <p>Case Study, Interface Design</p>
-                </a>
+            <div class="container-content">
+                <div class="content-preview">
+                </div>
+                <div class="content-page" preview="iphone-light.jpg">
+                    <a href="#">
+                        <h1>Bringing Suggested Actions to Mailchimp</h1>
+                        <p>Case Study</p>
+                    </a>
+                </div>
+                <div class="content-page" preview="iphone-dark.jpg">
+                    <a href="#">
+                        <h1>Bridging our users with their own—Designing the Contact Profile at Mailchimp</h1>
+                        <p>Case Study, Interface Design</p>
+                    </a>
+                </div>
+                <div class="content-page" preview="iphone-light.jpg">
+                    <a href="#">
+                        <h1>Exploring new paradigms for organizing thought</h1>
+                        <p>Writing, Interface Design</p>
+                    </a>
+                </div>
+                <div class="content-page" preview="iphone-dark.jpg">
+                    <a href="#">
+                        <h1>Usability backed by data—Introducing real data in design and research at Mailchimp</h1>
+                        <p>Case Study, Design Technology</p>
+                    </a>
+                </div>
+                <div class="content-page" preview="iphone-light.jpg">
+                    <a href="#">
+                        <h1>The Parts Bin—Select concept excerpts at Mailchimp</h1>
+                        <p>Interface Design</p>
+                    </a>
+                </div>
+                <div class="content-page" preview="iphone-dark.jpg">
+                    <a href="#">
+                        <h1>From start to finish line—Designing Mailchimp Bikeshare</h1>
+                        <p>Interface Design</p>
+                    </a>
+                </div>
+                <div class="content-page" preview="iphone-light.jpg">
+                    <a href="#">
+                        <h1>Thoroughly Considering Accessibility</h1>
+                        <p>Writing</p>
+                    </a>
+                </div>
             </div>
-            <div class="content-page" preview="iphone-light.jpg">
-                <a href="#">
-                    <h1>Exploring new paradigms for organizing thought</h1>
-                    <p>Writing, Interface Design</p>
-                </a>
+            <div class="container-footer">
+                <h1 class="footer-link-primary">
+                    <a href="mailto:hey@izuchukwu.co">hey@izuchukwu.co</a>
+                </h1>
             </div>
-            <div class="content-page" preview="iphone-dark.jpg">
-                <a href="#">
-                    <h1>Usability backed by data—Introducing real data in design and research at Mailchimp</h1>
-                    <p>Case Study, Design Technology</p>
-                </a>
-            </div>
-            <div class="content-page" preview="iphone-light.jpg">
-                <a href="#">
-                    <h1>The Parts Bin—Select concept excerpts at Mailchimp</h1>
-                    <p>Interface Design</p>
-                </a>
-            </div>
-            <div class="content-page" preview="iphone-dark.jpg">
-                <a href="#">
-                    <h1>From start to finish line—Designing Mailchimp Bikeshare</h1>
-                    <p>Interface Design</p>
-                </a>
-            </div>
-            <div class="content-page" preview="iphone-light.jpg">
-                <a href="#">
-                    <h1>Thoroughly Considering Accessibility</h1>
-                    <p>Writing</p>
-                </a>
-            </div>
-        </div>
-        <div class="container-footer">
-            <h1 class="link-email">
-                <a href="mailto:hey@izuchukwu.co">hey@izuchukwu.co</a>
-            </h1>
         </div>
 
         <script type="text/javascript">
+            let actions = document.querySelector('.container-actions')
+
+            let moon = document.querySelector('.action-moon')
+            let moonIcon = document.querySelector('.action-moon-icon')
+
+            let click = document.querySelector('.action-click')
+            let clickIcon = document.querySelector('.action-click-icon')
+
+            let schemeIsDark = false
+
+            moon.onclick = function(mouse) {
+                if (schemeIsDark){
+                    // To Light
+                    schemeIsDark = false;
+                    moonIcon.setAttribute('src', 'assets/moon.svg')
+                    clickIcon.setAttribute('src', 'assets/click.svg')
+                    document.body.removeAttribute('scheme')
+                    localStorage.setItem('scheme', 'light')
+                } else {
+                    // To Dark
+                    schemeIsDark = true;
+                    moonIcon.setAttribute('src', 'assets/moon-dark.svg')
+                    clickIcon.setAttribute('src', 'assets/click-dark.svg')
+                    document.body.setAttribute('scheme', 'dark')
+                    localStorage.setItem('scheme', 'dark')
+                }
+
+                click.style.top = `${mouse.clientY + 20}px`
+                click.style.left = `${mouse.clientX - 20}px`
+                click.style.opacity = 1.0
+
+                actions.removeChild(click)
+                actions.appendChild(click)
+
+                click.style.animation = '0.75s ease 0s 1 forwards click'
+            }
+
+            if (localStorage.getItem('scheme') === 'dark') moon.onclick()
+        </script>
+        <script type="text/javascript">
             // Title hover states & preview on hover
 
-            // let content = document.querySelector(".container-content")
-            // let pages = document.querySelectorAll(".content-page")
+            let content = document.querySelector(".container-content")
+            let pages = document.querySelectorAll(".content-page")
             let preview = document.querySelector(".content-preview")
 
             pages.forEach(function(page) {
@@ -102,7 +151,6 @@
                     pages.forEach(function(siblingPage) {
                         if (page !== siblingPage) {
                             siblingPage.classList.add('content-page-unfocused')
-                            // siblingPage.style.animation = ''
                         }
                     })
                     preview.style.visibility = 'visible'
@@ -123,27 +171,28 @@
         <script type="text/javascript">
             // Title & footer scroll animation
 
-            // let title = document.querySelector(".container-title")
+            let title = document.querySelector(".container-title")
             let footer = document.querySelector(".container-footer")
 
             let opacity = function(scrollDistanceToEdge) {
                 return 1 - ((scrollDistanceToEdge - (0.05 * window.innerHeight)) / (0.08 * window.innerHeight))
             }
 
-            let visibilityForOpacity = function(opacity) {
-                return opacity > 0.0 ? 'visible' : 'hidden'
+            let setContainerEnabledForOpacity = function(container, opacity) {
+                if (opacity > 0.0) container.classList.remove('container-disabled')
+                    else container.classList.add('container-disabled')
             }
 
             window.onscroll = function() {
                 let scrollTop = document.documentElement.scrollTop
                 let titleOpacity = opacity(scrollTop)
                 title.style.opacity = titleOpacity
-                title.style.visibility = visibilityForOpacity(titleOpacity)
+                setContainerEnabledForOpacity(title, titleOpacity)
 
                 let scrollBottom = document.documentElement.scrollHeight - scrollTop - window.innerHeight
                 let footerOpacity = opacity(scrollBottom)
                 footer.style.opacity = footerOpacity
-                footer.style.visibility = visibilityForOpacity(footerOpacity)
+                setContainerEnabledForOpacity(footer, footerOpacity)
             }
         </script>
     </body>
