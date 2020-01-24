@@ -1,9 +1,11 @@
+// Interactive Name
+
 let name = document.querySelector('.name')
 let descriptionVisible = false
 
 if (name) {
     name.onclick = function() {
-        if (!descriptionVisible) name.textContent = "(In Igbo, \"the will of God\")"
+        if (!descriptionVisible) name.textContent = "(In Igbo, \"God's Will\")"
             else name.textContent = "I'm Izuchukwu—"
         descriptionVisible = !descriptionVisible
     }
@@ -57,7 +59,24 @@ moon.onclick = function(mouse) {
     }
 }
 
-if (localStorage.getItem('scheme') === 'dark') moon.onclick()
+window.preloadedImages = []
+
+if (localStorage.getItem('scheme') === 'dark') {
+    moon.onclick()
+} else {
+    // Action Icon Preload
+
+    function preload(image) {
+        let index = preloadedImages.length
+        preloadedImages[index] = new Image();
+        preloadedImages[index].src = image;
+    }
+
+    preload("assets/moon-dark.svg")
+    preload("assets/click-dark.svg")
+    preload("assets/twitter-dark.svg")
+    preload("assets/instagram-dark.svg")
+}
 
 // Title hover states & preview on hover
 
