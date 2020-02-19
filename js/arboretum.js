@@ -68,9 +68,17 @@ moon.onclick = function(mouse) {
 
 window.preloadedImages = []
 
+if (localStorage.getItem('scheme') === null) {
+    // No scheme set. Set system scheme.
+    let scheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    localStorage.setItem('scheme', scheme)
+}
+
 if (localStorage.getItem('scheme') === 'dark') {
+    // Dark theme is set.
     moon.onclick()
 } else {
+    // Light or unsupported scheme set.
     // Icon Action Preload
     preload("assets/moon-dark.svg")
     preload("assets/click-dark.svg")
