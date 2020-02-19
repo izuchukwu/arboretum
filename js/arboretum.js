@@ -45,19 +45,11 @@ moon.onclick = function(mouse) {
     if (schemeIsDark){
         // To Light
         schemeIsDark = false;
-        moonIcon.setAttribute('src', 'assets/moon.svg')
-        clickIcon.setAttribute('src', 'assets/click.svg')
-        twitterIcon.setAttribute('src', 'assets/twitter.svg')
-        instagramIcon.setAttribute('src', 'assets/instagram.svg')
         document.body.removeAttribute('scheme')
         localStorage.setItem('scheme', 'light')
     } else {
         // To Dark
         schemeIsDark = true;
-        moonIcon.setAttribute('src', 'assets/moon-dark.svg')
-        clickIcon.setAttribute('src', 'assets/click-dark.svg')
-        twitterIcon.setAttribute('src', 'assets/twitter-dark.svg')
-        instagramIcon.setAttribute('src', 'assets/instagram-dark.svg')
         document.body.setAttribute('scheme', 'dark')
         localStorage.setItem('scheme', 'dark')
     }
