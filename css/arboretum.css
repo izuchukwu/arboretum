@@ -20,6 +20,14 @@
     background: #6FCF97;
 }
 
+body[scheme="dark"] .light {
+    display: none;
+}
+
+body:not([scheme="dark"]) .dark {
+    display: none;
+}
+
 /* Spacing */
 
 :root {
