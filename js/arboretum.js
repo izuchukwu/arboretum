@@ -138,8 +138,11 @@ let opacity = function(scrollDistanceToEdge) {
 }
 
 let setContainerEnabledForOpacity = function(container, opacity) {
-    if (opacity > 0.0) container.classList.remove('container-disabled')
-        else container.classList.add('container-disabled')
+    if (opacity < 1.0) {
+        container.classList.add('container-disabled')
+    } else {
+        container.classList.remove('container-disabled')
+    }
 }
 
 window.onscroll = function() {
@@ -152,7 +155,7 @@ window.onscroll = function() {
     setContainerEnabledForOpacity(title, headerOpacity)
 
     actions.style.opacity = window.isPhoneOrTablet ? headerOpacity : 1.0;
-    setContainerEnabledForOpacity(actions, headerOpacity)
+    setContainerEnabledForOpacity(actions, window.isPhoneOrTablet ? headerOpacity : 1.0)
 
     footer.style.opacity = footerOpacity
     setContainerEnabledForOpacity(footer, footerOpacity)

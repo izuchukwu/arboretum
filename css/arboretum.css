@@ -151,6 +151,11 @@ body {
 
 .footer-item {
     margin-right: 30px;
+    transition: transform 0.2s ease;
+}
+
+.footer-item:hover {
+    transform: translateY(-5px);
 }
 
 .footer-item:last-child {
