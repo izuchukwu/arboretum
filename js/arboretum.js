@@ -1,3 +1,11 @@
+// Image and Icon Preload
+
+function preload(image) {
+    let index = preloadedImages.length
+    preloadedImages[index] = new Image();
+    preloadedImages[index].src = image;
+}
+
 // Interactive Name
 
 let name = document.querySelector('.name')
@@ -11,7 +19,14 @@ if (name) {
     }
 }
 
-// Dark mode
+// Phone Or Tablet Media Querying
+
+let phoneAndTabletQuery = window.matchMedia("(max-width: 768px)")
+function phoneAndTabletQueryListener(mediaQuery) { window.isPhoneOrTablet = mediaQuery.matches }
+phoneAndTabletQuery.addListener(phoneAndTabletQueryListener)
+phoneAndTabletQueryListener(phoneAndTabletQuery)
+
+// Dark Mode
 
 let actions = document.querySelector('.container-actions')
 
@@ -64,21 +79,14 @@ window.preloadedImages = []
 if (localStorage.getItem('scheme') === 'dark') {
     moon.onclick()
 } else {
-    // Action Icon Preload
-
-    function preload(image) {
-        let index = preloadedImages.length
-        preloadedImages[index] = new Image();
-        preloadedImages[index].src = image;
-    }
-
+    // Icon Action Preload
     preload("assets/moon-dark.svg")
     preload("assets/click-dark.svg")
     preload("assets/twitter-dark.svg")
     preload("assets/instagram-dark.svg")
 }
 
-// Title hover states & preview on hover
+// Title Hover States & Preview on Hover
 
 let content = document.querySelector(".container-content")
 let pages = document.querySelectorAll(".content-page")
@@ -120,7 +128,7 @@ pages.forEach(function(page) {
     }
 })
 
-// Title & footer scroll animation
+// Title & Footer Scroll Animation
 
 let title = document.querySelector(".container-title")
 let footer = document.querySelector(".container-footer")
@@ -136,12 +144,18 @@ let setContainerEnabledForOpacity = function(container, opacity) {
 
 window.onscroll = function() {
     let scrollTop = document.documentElement.scrollTop
-    let titleOpacity = opacity(scrollTop)
-    title.style.opacity = titleOpacity
-    setContainerEnabledForOpacity(title, titleOpacity)
-
+    let headerOpacity = limit(opacity(scrollTop), 0.0, 1.0)
     let scrollBottom = document.documentElement.scrollHeight - scrollTop - window.innerHeight
-    let footerOpacity = opacity(scrollBottom)
+    let footerOpacity = limit(opacity(scrollBottom), 0.0, 1.0)
+
+    title.style.opacity = headerOpacity
+    setContainerEnabledForOpacity(title, headerOpacity)
+
+    actions.style.opacity = window.isPhoneOrTablet ? headerOpacity : 1.0;
+    setContainerEnabledForOpacity(actions, headerOpacity)
+
     footer.style.opacity = footerOpacity
     setContainerEnabledForOpacity(footer, footerOpacity)
 }
+
+function limit(value, min, max) { return Math.min(Math.max(value, min), max) }
