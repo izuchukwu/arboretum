@@ -124,12 +124,20 @@ body {
     opacity: 0.25;
 }
 
+.container-footer-static {
+    position: absolute;
+    bottom: var(--padding-primary);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    transition: opacity 0.2s ease;
+}
+
 .container-footer {
     position: sticky;
     bottom: var(--padding-primary);
     opacity: 0.0;
     will-change: transform;
-    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -180,6 +188,11 @@ a {
 
 .footer-link-primary {
     text-decoration: underline;
+    font-size: 20px;
+}
+
+.footer-link-secondary {
+    font-size: 20px;
 }
 
 /* Responsive Adjustment */
@@ -219,6 +232,12 @@ a {
 
     .action-click {
         visibility: hidden;
+    }
+}
+
+@media screen and (max-height: 320px) {
+    .container-footer-static {
+        opacity: 0.0;
     }
 }
 
