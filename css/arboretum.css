@@ -140,11 +140,13 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-right: var(--padding-primary);
 }
+
+
 
 .container-footer-static {
     position: absolute;
+    margin-right: var(--padding-primary);
     opacity: 1.0;
     transition: opacity 0.2s ease;
 }
