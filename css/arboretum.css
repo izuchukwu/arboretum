@@ -198,12 +198,17 @@ a {
     text-decoration: inherit;
 }
 
-.footer-link {
-    font-size: 20px;
+.lab-link {
+    display: inline-block;
+    transition: transform 0.2s ease;
 }
 
-.footer-link-primary {
-    text-decoration: underline;
+.lab-link:hover {
+    transform: translateY(-5px);
+}
+
+.footer-link {
+    font-size: 20px;
 }
 
 /* Responsive Adjustment */
